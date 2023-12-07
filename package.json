@@ -1,0 +1,19 @@
+{
+  "name": "igloo-hotel-booking-server",
+  "version": "1.0.0",
+  "description": "Server for the Igloo Hotel booking website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PrajwalMathad/igloo-hotel-booking-server.git"
+  },
+  "author": "Prajwal Mathad",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PrajwalMathad/igloo-hotel-booking-server/issues"
+  },
+  "homepage": "https://github.com/PrajwalMathad/igloo-hotel-booking-server#readme"
+}
