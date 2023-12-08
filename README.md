@@ -1,1 +1,1 @@
-# kanbas-node-server-app
+# Server for the Igloo Hotel booking website
