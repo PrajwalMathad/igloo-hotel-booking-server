@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "name": "igloo-hotel-booking-server",
   "version": "1.0.0",
   "description": "Server for the Igloo Hotel booking website",

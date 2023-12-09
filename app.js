@@ -3,7 +3,9 @@ import session from "express-session";
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
-const CONNECTION_STRING = 'mongodb+srv://prajwalmathad966:M0ng0Db%40966@cluster0.9xz8fmf.mongodb.net/kanbas?retryWrites=true&w=majority' || "mongodb://127.0.0.1:27017/kanbas";
+import UserRoutes from "./users/routes.js";
+import HotelRoutes from "./hotels/routes.js";
+const CONNECTION_STRING = 'mongodb+srv://satwikbhandiwad123:bhandiwad@cluster0.dwjmuaa.mongodb.net/igloo?retryWrites=true&w=majority' || "mongodb://127.0.0.1:27017/kanbas";
 mongoose.connect(CONNECTION_STRING);
 const app = express();
 app.use(
@@ -30,5 +32,6 @@ app.use(
 );
 
 app.use(express.json());
-// CourseRoutes(app);
+UserRoutes(app);
+HotelRoutes(app);
 app.listen(process.env.PORT || 4000);
