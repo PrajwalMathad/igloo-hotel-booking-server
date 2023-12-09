@@ -18,6 +18,18 @@ function HotelRoutes(app) {
 
     };
 
+    const findHotelsByOwner = async (req, res) => {
+        const hotels = await dao.findHotelsByOwner(
+            req.params.owner);
+        if (!hotels) {
+            res.json(
+                { message: "No hotels owned by you." });
+        } else {
+            res.json(hotels);
+        }
+
+    };
+
     const updateHotel = async (req, res) => {
         const { hotelId } = req.params;
         const status = await dao.updateHotel(hotelId, req.body);
@@ -30,11 +42,27 @@ function HotelRoutes(app) {
         res.json(hotel);
     };
 
+    const findHotelById = async (req, res) => {
+        const { hotelId } = req.params;
+        const hotel = await dao.findHotelById(hotelId);
+        res.json(hotel);
+    };
+
+    const deleteHotel = async (req, res) => {
+        const status = await dao.deleteHotel(req.params.hotelId);
+        res.json(status);
+    };
+    
+
+
 
     app.post("/api/hotels", createHotel);
-    app.get("/api/hotels/:city", findHotelsByCity);
+    app.get("/api/hotels/city/:city", findHotelsByCity);
+    app.get("/api/hotels/owner/:owner", findHotelsByOwner);
     app.get("/api/hotels", findAllHotels);
+    app.get("/api/hotels/:hotelId", findHotelById);
     app.put("/api/hotels/:hotelId", updateHotel);
+    app.delete("/api/hotels/:hotelId", deleteHotel);
 }
 
 export default HotelRoutes;
