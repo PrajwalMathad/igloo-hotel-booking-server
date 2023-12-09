@@ -9,7 +9,7 @@ function HotelRoutes(app) {
     const findHotelsByCity = async (req, res) => {
         const hotels = await dao.findHotelsByCity(
             req.params.city);
-        if (!hotels) {
+        if (hotels.length === 0) {
             res.json(
                 { message: "No hotels in this area" });
         } else {
@@ -21,7 +21,7 @@ function HotelRoutes(app) {
     const findHotelsByOwner = async (req, res) => {
         const hotels = await dao.findHotelsByOwner(
             req.params.owner);
-        if (!hotels) {
+        if (hotels.length === 0) {
             res.json(
                 { message: "No hotels owned by you." });
         } else {
