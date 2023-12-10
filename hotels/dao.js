@@ -1,6 +1,10 @@
 import model from "./model.js";
 
-export const createHotel = (hotel) => model.create(hotel);
+export const createHotel = (hotel) => {
+    const currentTime = new Date().getTime();
+    hotel.hotel_id = 'H' + currentTime;
+    model.create(hotel);
+}
 export const findAllHotels = () => model.find();
 
 export const findHotelsByCity = (city) =>
