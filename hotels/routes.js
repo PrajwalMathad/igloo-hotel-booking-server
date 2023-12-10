@@ -33,7 +33,7 @@ function HotelRoutes(app) {
     const updateHotel = async (req, res) => {
         const { hotelId } = req.params;
         const status = await dao.updateHotel(hotelId, req.body);
-        currentHotel = await dao.findHotelById(hotelId);
+        // currentHotel = await dao.findHotelById(hotelId);
         res.json(status);
     };
 
