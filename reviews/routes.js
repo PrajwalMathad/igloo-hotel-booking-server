@@ -33,6 +33,16 @@ function ReviewRoutes(app) {
         }
     };
 
+    const getAvgHotelRating = async(req, res) => {
+        const rating = await dao.getAvgHotelRating(req.params.hotel);
+        if (rating.length === 0) {
+            res.json(
+                { message: "No reviews for this hotel." });
+        } else {
+            res.json(rating);
+        }
+    };
+
     const updateReview = async (req, res) => {
         const { reviewId } = req.params;
         const status = await dao.updateReview(reviewId, req.body);
@@ -42,6 +52,7 @@ function ReviewRoutes(app) {
     app.post("/api/reviews", createReview);
     app.get("/api/reviews/user/:user", findReviewsByUser);
     app.get("/api/reviews/hotel/:hotel", findReviewsByHotel);
+    app.get("/api/reviews/rating/:hotel", getAvgHotelRating);
     app.delete("/api/reviews/:reviewId", deleteReview);
     app.put("/api/reviews/:reviewId", updateReview);
 }

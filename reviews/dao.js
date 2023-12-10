@@ -12,4 +12,21 @@ export const updateReview = (reviewId, review) =>
     model.updateOne({ _id: reviewId }, { $set: review });
 
 
+export const getAvgHotelRating = (hotel) =>
+    model.aggregate([
+        {
+            $match: {
+                "hotel": hotel
+            }
+        },
+        {
+            $group: {
+                _id: "$hotel", // Grouping by hotel ID
+                avg_rating: { $avg: "$rating" } // Calculating the average rating
+            }
+        }
+    ]);
+
+
+
 export const deleteReview = (reviewId) => model.deleteOne({ _id: reviewId });    
