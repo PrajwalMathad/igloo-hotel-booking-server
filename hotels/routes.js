@@ -1,6 +1,11 @@
 import * as dao from "./dao.js";
 
 function HotelRoutes(app) {
+
+    const root = async (req, res) => {
+      res.send('Welcome to Igloo!')
+    }
+
     const findAllHotels = async (req, res) => {
         try {
             const hotels = await dao.findAllHotels();
@@ -85,7 +90,7 @@ function HotelRoutes(app) {
 
 
 
-
+    app.get("/", root)
     app.post("/api/hotels", createHotel);
     app.get("/api/hotels/city/:city", findHotelsByCity);
     app.get("/api/hotels/owner/:owner", findHotelsByOwner);
