@@ -58,7 +58,7 @@ function BookingRoutes(app) {
     const getCurrentBookingsByHotel = async (req, res) => {
         try {
             const bookings = await dao.getCurrentBookingsByHotel(
-                req.body.hotel, req.body.check_in_date, req.body.check_out_date);
+                req.query.hotel, req.query.check_in_date, req.query.check_out_date);
             if (bookings.length === 0) {
                 res.json(
                     { booked_rooms: 0 });
