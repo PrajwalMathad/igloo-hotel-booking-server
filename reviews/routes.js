@@ -2,52 +2,82 @@ import * as dao from "./dao.js";
 
 function ReviewRoutes(app) {
     const createReview = async (req, res) => {
-        const review = await dao.createReview(req.body);
-        res.json(review);
-      };
-    
-      const deleteReview = async (req, res) => {
-        const status = await dao.deleteReview(req.params.reviewId);
-        res.json(status);
-      };
-
-      const findReviewsByUser = async (req, res) => {
-        const reviews = await dao.findReviewsByUser(
-            req.params.user);
-        if (reviews.length === 0) {
-            res.json(
-                { message: "No reviews from this user." });
-        } else {
-            res.json(reviews);
+        try {
+            const review = await dao.createReview(req.body);
+            res.json(review);
+        } catch (error) {
+            res.status(500).json({ error: error.message });
         }
+
+    };
+
+    const deleteReview = async (req, res) => {
+        try {
+            const status = await dao.deleteReview(req.params.reviewId);
+            res.json(status);
+        } catch (error) {
+            res.status(500).json({ error: error.message });
+        }
+
+    };
+
+    const findReviewsByUser = async (req, res) => {
+        try {
+            const reviews = await dao.findReviewsByUser(
+                req.params.user);
+            if (reviews.length === 0) {
+                res.json(
+                    { message: "No reviews from this user." });
+            } else {
+                res.json(reviews);
+            }
+        } catch (error) {
+            res.status(500).json({ error: error.message });
+        }
+
     };
 
     const findReviewsByHotel = async (req, res) => {
-        const reviews = await dao.findReviewsByHotel(
-            req.params.hotel);
-        if (reviews.length === 0) {
-            res.json(
-                { message: "No reviews for this hotel." });
-        } else {
-            res.json(reviews);
+        try {
+            const reviews = await dao.findReviewsByHotel(
+                req.params.hotel);
+            if (reviews.length === 0) {
+                res.json(
+                    { message: "No reviews for this hotel." });
+            } else {
+                res.json(reviews);
+            }
+        } catch (error) {
+            res.status(500).json({ error: error.message });
         }
+
     };
 
-    const getAvgHotelRating = async(req, res) => {
-        const rating = await dao.getAvgHotelRating(req.params.hotel);
-        if (rating.length === 0) {
-            res.json(
-                { message: "No reviews for this hotel." });
-        } else {
-            res.json(rating);
+    const getAvgHotelRating = async (req, res) => {
+        try {
+            const rating = await dao.getAvgHotelRating(req.params.hotel);
+            if (rating.length === 0) {
+                res.json(
+                    { message: "No reviews for this hotel." });
+            } else {
+                res.json(rating);
+            }
+        } catch (error) {
+            res.status(500).json({ error: error.message });
         }
+
     };
 
     const updateReview = async (req, res) => {
-        const { reviewId } = req.params;
-        const status = await dao.updateReview(reviewId, req.body);
-        res.json(status);
-      };
+        try {
+            const { reviewId } = req.params;
+            const status = await dao.updateReview(reviewId, req.body);
+            res.json(status);
+        } catch (error) {
+            res.status(500).json({ error: error.message });
+        }
+
+    };
 
     app.post("/api/reviews", createReview);
     app.get("/api/reviews/user/:user", findReviewsByUser);

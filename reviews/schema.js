@@ -19,7 +19,10 @@ const reviewSchema = new mongoose.Schema({
   date: {
     type: String,
     required: true
-  }
+  },
+  liked_by:[{
+    type: String
+  }]
 }, { collection: 'reviews' });
 
 export default reviewSchema;
