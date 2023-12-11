@@ -101,11 +101,16 @@ function UserRoutes(app) {
     }
   };
 
+  const findUserByEmail = async (req, res) => {
+    const user = await dao.findUserByEmail(req.params.email);
+    res.json(user);
+  }
 
 
   app.post("/api/users", createUser);
   app.get("/api/users", findAllUsers);
   app.get("/api/users/:userId", findUserById);
+  app.get("/api/users/email/:email", findUserByEmail);
   app.put("/api/users/:userId", updateUser);
   app.delete("/api/users/:userId", deleteUser);
   app.post("/api/users/signup", signup);
