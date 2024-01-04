@@ -90,7 +90,7 @@ function HotelRoutes(app) {
 
 
 
-    app.get("/", root)
+    app.get("/api", root)
     app.post("/api/hotels", createHotel);
     app.get("/api/hotels/city/:city", findHotelsByCity);
     app.get("/api/hotels/owner/:owner", findHotelsByOwner);
